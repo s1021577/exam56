@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
+use App\Http\Requests\ExamRequest;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -33,9 +35,24 @@ class ExamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExamRequest $request)
     {
-        dd($request);
+        //dd($request);
+        // $exam          = new Exam;
+        // $exam->title   = $request->title;
+        // $exam->enable  = $request->enable;
+        // $exam->user_id = $request->user_id;
+        // $exam->save();
+
+        //以下二種必須搭配在Exam.php加上fillable設定
+        // Exam::create([
+        //     'title'   => $request->title,
+        //     'user_id' => $request->user_id,
+        //     'enable'  => $request->enable,
+        // ]);
+
+        Exam::create($request->all());
+        return redirect()->route('exam.index');
     }
 
     /**
@@ -67,7 +84,7 @@ class ExamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExamRequest $request, $id)
     {
         //
     }
