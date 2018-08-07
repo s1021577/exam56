@@ -14,7 +14,7 @@
 Route::get('/', function () {
     $name = 'tad4';
     $say  = '嗨！';
-    return view('welcome', compact('name', 'say'));
+    return view('/', 'ExamController@index');
 
     //return view('welcome', ['name' => 'tad3', 'say' => '嗨！']);
 
@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ExamController@index')->name('home');
 
 // Auth::routes();
 
