@@ -3,9 +3,9 @@
     <h1>隨機題庫系統</h1>
 @endsection
 
-@section('my_menu')
+{{-- @section('my_menu')
 @parent
 <li><a class="nav-link" href="/add">新增題庫</a></li>
-    
+     --}}
     {{-- 有parent附加 --}}
-@stop
+{{-- @stop --}}

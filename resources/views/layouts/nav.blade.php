@@ -25,7 +25,10 @@
                     </li>
                 @else
                     @section('my_menu')
-                    <li><a class="nav-link" href="/home">{{__('home')}}</a></li>
+                    {{-- <li><a class="nav-link" href="/home">{{__('home')}}</a></li> --}}
+                    @role('管理員')
+                    <li><a class="nav-link" href="/admin">{{ __('Admin') }}</a></li>
+                    @endrole
                     @show 
                     {{-- 定義一個區域同時show，如果用endsection不會直接出現 --}}
                     <li class="nav-item dropdown">
