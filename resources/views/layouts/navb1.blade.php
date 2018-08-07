@@ -26,13 +26,9 @@
                 @else
                     @section('my_menu')
                     {{-- <li><a class="nav-link" href="/home">{{__('home')}}</a></li> --}}
-                    @can('後台管理')
+                    @role('管理員')
                     <li><a class="nav-link" href="/admin">{{ __('Admin') }}</a></li>
-                    @endcan
-                    @can('建立測驗')
-                    <li><a class="nav-link" href="{{ route('exam.create') }}">建立測驗</a></li>
-                    @endcan
-                    
+                    @endrole
                     @show 
                     {{-- 定義一個區域同時show，如果用endsection不會直接出現 --}}
                     <li class="nav-item dropdown">
