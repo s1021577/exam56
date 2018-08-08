@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExamRequest extends FormRequest
+class TopicRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,6 @@ class ExamRequest extends FormRequest
      */
     public function authorize()
     {
-        //return false;
         return $this->user()->can('建立測驗');
     }
 
@@ -25,22 +24,27 @@ class ExamRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:191',
+            'topic' => 'required|max:191',
+            'opt1'  => 'required|max:191',
+            'opt2'  => 'required|max:191',
+            'ans'   => 'required',
         ];
     }
     public function messages()
     {
         return [
             'required' => '「:attribute」為必填欄位',
-            'min'      => '「:attribute」至少要 :min 個字',
             'max'      => '「:attribute」最多只能 :max 個字',
         ];
     }
-
     public function attributes()
     {
         return [
-            'title' => '測驗標題',
+            'topic' => '題目',
+            'opt1'  => '選項1',
+            'opt2'  => '選項2',
+            'ans'   => '答案',
+
         ];
     }
 }

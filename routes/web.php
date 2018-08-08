@@ -26,3 +26,4 @@ Route::post('/exam', 'ExamController@store')->name('exam.store');
 //當上行移到/exam/create前時，會將create以為id，而進行錯誤的SQL應改為以下，限制id為數字
 //Route::get('/exam/{id}', 'ExamController@show')->name('exam.show')->where('id', '[0-9]+');
 //更好的做法是在最上面加pattern
+Route::post('/topic', 'TopicController@store')->name('topic.store');
