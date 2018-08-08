@@ -15,7 +15,14 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $exams = Exam::all();
+        // $exams = Exam::all();
+        // $exams = Exam::where('enable', 1)
+        //     ->orderBy('created_at', 'desc')
+        //     ->take(2)
+        //     ->get(); //取二筆並排序
+        $exams = Exam::where('enable', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(2); //使用分頁,但要同時設定view即index
         return view('exam.index', compact('exams'));
     }
 
@@ -62,9 +69,13 @@ class ExamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    //public function show($id)
+    //依據12-1路由模型綁定
+    public function show(Exam $exam)
     {
         //
+        //$exam = Exam::find($id);//12-1路由模型綁定
+        return view('exam.show', compact('exam'));
     }
 
     /**

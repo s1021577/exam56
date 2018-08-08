@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <h1>隨機題庫系統</h1>
+    <h1>隨機題庫系統<small>（共 {{$exams->total()}} 筆資料）</small></h1>
 
     <div class="list-group">      
 
@@ -17,7 +17,10 @@
         @endforelse
         
     </div>
-
+    <div class="my-3">
+        {{ $exams->links() }}
+    </div>
+    {{-- ->links()使用分頁視圖 --}}
 @endsection
 
 {{-- @section('my_menu')
