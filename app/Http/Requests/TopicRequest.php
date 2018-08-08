@@ -44,7 +44,6 @@ class TopicRequest extends FormRequest
             'opt1'  => '選項1',
             'opt2'  => '選項2',
             'ans'   => '答案',
-
         ];
     }
 }
