@@ -44,7 +44,8 @@
     @endcan
     
     
-        @forelse ($topics as $key => $topic)  
+        {{-- @forelse ($topics as $key => $topic) //12-8 測驗與題目的關聯  --}}
+        @forelse ($exam->topics as $key => $topic) //12-8 測驗與題目的關聯, 此時$exam已含有Exam本身及Topic所以如果要取用topics則要用$exam->topics
         <dl>
             <dt class="h3">
                 @can('建立測驗')
