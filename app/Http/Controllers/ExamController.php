@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use App\Http\Requests\ExamRequest;
+use App\Topic;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -75,7 +76,9 @@ class ExamController extends Controller
     {
         //
         //$exam = Exam::find($id);//12-1路由模型綁定
-        return view('exam.show', compact('exam'));
+        //return view('exam.show', compact('exam'));//只有呈現考試，沒有呈現題目
+        $topics = Topic::where('exam_id', $exam->id)->get();
+        return view('exam.show', compact('exam', 'topics'));
     }
 
     /**

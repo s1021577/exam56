@@ -41,37 +41,7 @@
                 ->control(bs()->submit('儲存'))
                 ->showAsRow() }}
     {{ bs()->closeForm() }}
-    @endcan
-    
-    
-        @forelse ($topics as $key => $topic)  
-        <dl>
-            <dt class="h3">
-                @can('建立測驗')
-                （{{$topic->ans}}）
-                @endcan
-                <span class="badge badge-success">{{$key+1}}</span>
-                {{$topic->topic}}            
-            </dt>
-            {{-- $topic是物件,$key是由@forelse動作代出的索引值 --}}
-            <dd class="opt">
-                {{ bs()->radioGroup("ans[$topic->id]", [
-                1 => "&#10102; $topic->opt1",
-                2 => "&#10103; $topic->opt2",
-                3 => "&#10104; $topic->opt3",
-                4 => "&#10105; $topic->opt4",
-                ])
-                ->selectedOption((Auth::user() and Auth::user()->can('建立測驗'))?$topic->ans:0)                
-                ->addRadioClass(['mx-3, my-1'])}}
-            </dd>
-        </dl>        
-            
-        @empty
-            <div class="alert alert-danger">尚無任何題目</div>
-        @endforelse
-    
-
-
+@endcan
     <div class="text-center">
         發佈於 {{ $exam->created_at->format("Y年m月d日 H:i:s") }} / 最後更新： {{ $exam->updated_at->format("Y年m月d日 H:i:s") }}
     </div>
