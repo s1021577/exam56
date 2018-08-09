@@ -87,11 +87,10 @@ class ExamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Exam $exam)
     {
-        //
+        return view('exam.create', compact('exam'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -99,9 +98,11 @@ class ExamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ExamRequest $request, $id)
+    public function update(ExamRequest $request, Exam $exam)
     {
         //
+        $exam->update($request->all());
+        return redirect()->route('exam.show', $exam->id);
     }
 
     /**

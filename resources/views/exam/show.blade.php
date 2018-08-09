@@ -2,7 +2,18 @@
 
 
 @section('content')
-    <h1> {{$exam->title}}</h1>
+    <h1> 
+            {{ $exam->title }}
+            @can('建立測驗')
+            <a href="{{ route('exam.edit', $exam->id) }}" class="btn btn-warning">編輯</a>            
+            @endcan
+    </h1>
+    {{-- <h1 class="text-center">
+        {{$exam->title}}
+        @can('建立測驗')
+             <a href="{{route('exam.edit', $exam->id)}}" class="btn btn-warning">編輯</a>
+        @endcan
+    </h1> --}}
     @can('建立測驗')
     {{ bs()->openForm('post', '/topic') }}
         {{ bs()->formGroup()

@@ -27,3 +27,5 @@ Route::post('/exam', 'ExamController@store')->name('exam.store');
 //Route::get('/exam/{id}', 'ExamController@show')->name('exam.show')->where('id', '[0-9]+');
 //更好的做法是在最上面加pattern
 Route::post('/topic', 'TopicController@store')->name('topic.store');
+Route::get('/exam/{exam}/edit', 'ExamController@edit')->name('exam.edit');
+Route::patch('/exam/{exam}', 'ExamController@update')->name('exam.update');
