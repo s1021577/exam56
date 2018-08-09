@@ -70,11 +70,15 @@
             <dt class="h3">
                 
                 @can('建立測驗')
-                    <form action="{{route('topic.destroy', $topic->id)}}"  method="post" style="display:inline">
+                    {{-- <form action="{{route('topic.destroy', $topic->id)}}"  method="post" style="display:inline">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-danger">刪除</button>
-                    </form>
+                    </form> --}}
+                    {{-- 以上為原本的用form暗藏@method('delete')
+                        以下改用java方式
+                    --}}
+                    <button type="button" class="btn btn-danger btn-del-topic" data-id="{{ $topic->id }}">刪除</button>
                     <a href="{{ route('topic.edit', $topic->id) }}" class="btn btn-xs btn-warning">編輯</a>
                     （{{ $topic->ans }}）
                 @endcan
@@ -102,4 +106,55 @@
     <div class="text-center">
         發佈於 {{ $exam->created_at->format("Y年m月d日 H:i:s") }} / 最後更新： {{ $exam->updated_at->format("Y年m月d日 H:i:s") }}
     </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function(){
+        $('.btn-del-topic').click(function(){
+            var topic_id=$(this).data('id');
+            // 對應data-id
+            swal({
+                    title: "確定要刪除題目嗎？",
+                    text: "刪除後該題目就消失救不回來囉！",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "是！含淚刪除！",
+                    cancelButtonText: "不...別刪",
+                }).then((result) => {
+                    if (result.value) {
+                        swal("OK！刪掉題目惹！", "該題目已經隨風而逝了...", "success");
+                        axios.delete('/topic/' + topic_id).then(function () {
+                            location.reload();
+                        });
+                    }
+                })
+        });
+    });
+</script>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function(){
+            $('.btn-del-topic').click(function(){
+                var topic_id=$(this).data('id');                
+                swal({
+                    title: "確定要刪除題目嗎？",
+                    text: "刪除後該題目就消失救不回來囉！",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "是！含淚刪除！",
+                    cancelButtonText: "不...別刪",
+                }).then((result) => {
+                    if (result.value) {
+                        swal("OK！刪掉題目惹！", "該題目已經隨風而逝了...", "success");
+                        axios.delete('/topic/' + topic_id).then(function () {
+                            location.reload();
+                        });
+                    }
+                })
+            });
+        });
+    </script>
 @endsection

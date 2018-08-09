@@ -90,6 +90,7 @@ class TopicController extends Controller
     {
         //
         $topic->delete();
-        return redirect()->route('exam.show', $topic->exam_id);
+        // return redirect()->route('exam.show', $topic->exam_id);
+        //當改用ajax刪除時，此行必須取消，否則會刪除該測驗的全部題目含測驗
     }
 }
