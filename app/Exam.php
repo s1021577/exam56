@@ -17,8 +17,10 @@ class Exam extends Model
     {
         return $this->hasMany('App\Topic');
     }
-    public function tests()
+
+    public function user()
     {
-        return $this->hasMany('App\Test');
+        return $this->belongsTo('App\User');
     }
+
 }

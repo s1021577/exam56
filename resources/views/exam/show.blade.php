@@ -23,10 +23,15 @@
 
 
     {{-- 題目列表 --}}
+    @if(Auth::check())
     @include('exam.topic')
-        
+    @else
+        <div class="alert alert-info">
+            <h3>本測驗共有{{$exam->topics->count()}}題, 登入後始能看見</h3>        
+        </div>
+    @endif
     <div class="text-center">
-        發佈於 {{ $exam->created_at->format("Y年m月d日 H:i:s") }} / 最後更新： {{ $exam->updated_at->format("Y年m月d日 H:i:s") }}
+    {{$exam->user->name}}({{$exam->user->email}})發佈於 {{ $exam->created_at->format("Y年m月d日 H:i:s") }} / 最後更新： {{ $exam->updated_at->format("Y年m月d日 H:i:s") }}
     </div>
 @endsection
 @section('js')
