@@ -121,6 +121,7 @@ class ExamController extends Controller
     {
         //
         $exam->delete();
-        return redirect()->route('exam.index');
+        //return redirect()->route('exam.index');
+        //以上是給form用的，如果改用ajax時，必須取消，否則會全毀
     }
 }
