@@ -22,12 +22,16 @@
             {{-- {{ bs()->select('enable', ['1' => '開啟', '0' => '關閉'], '1') }} --}}
             {{-- {{ bs()->checkbox('enable1')->description('啟用測驗')->checked() }} --}}
             
-            {{ bs()->formGroup()
+            {{-- {{ bs()->formGroup()
                 ->label('是否啟用', false, 'text-sm-right')
                 ->control(bs()->radioGroup('enable', [1 => '啟用', 0 => '關閉'])
                     ->selectedOption(isset($exam)?$exam->enable:1)
                     ->inline())
-                ->showAsRow() }}
+                ->showAsRow() }} --}}
+            {{ bs()->formGroup()
+                ->label('是否啟用', false, 'text-sm-right')
+                ->control(bs()->radioGroup('enable', [1 => '啟用', 0 => '關閉'])->inline())
+                ->showAsRow() }}    
             {{ bs()->hidden('user_id', Auth::id()) }}
             {{ bs()->formGroup()
                 ->label('', false, 'text-sm-right')
