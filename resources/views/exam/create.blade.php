@@ -25,7 +25,7 @@
             {{ bs()->formGroup()
                 ->label('是否啟用', false, 'text-sm-right')
                 ->control(bs()->radioGroup('enable', [1 => '啟用', 0 => '關閉'])
-                    ->selectedOption(isset($exam)?$exam->able:1)
+                    ->selectedOption(isset($exam)?$exam->enable:1)
                     ->inline())
                 ->showAsRow() }}
             {{ bs()->hidden('user_id', Auth::id()) }}

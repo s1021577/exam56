@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exam;
 use App\Http\Requests\ExamRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
@@ -20,9 +21,14 @@ class ExamController extends Controller
         //     ->orderBy('created_at', 'desc')
         //     ->take(2)
         //     ->get(); //取二筆並排序
-        $exams = Exam::where('enable', 1)
-            ->orderBy('created_at', 'desc')
-            ->paginate(2); //使用分頁,但要同時設定view即index
+        if (Auth::check() and Auth::user()->can('建立測驗')) {
+            $exams = Exam::orderBy('created_at', 'desc')
+                ->paginate(2);
+        } else {
+            $exams = Exam::where('enable', 1)
+                ->orderBy('created_at', 'desc')
+                ->paginate(2);
+        }
         return view('exam.index', compact('exams'));
     }
 

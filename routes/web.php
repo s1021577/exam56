@@ -12,6 +12,7 @@
  */
 //Route::pattern('id', '[0-9]+'); //注意id名稱要一致
 Route::pattern('exam', '[0-9]+'); //12-1路由模型綁定
+Route::pattern('topic', '[0-9]+');
 Route::get('/', 'ExamController@index')->name('index');
 
 Auth::routes();
@@ -26,6 +27,8 @@ Route::post('/exam', 'ExamController@store')->name('exam.store');
 //當上行移到/exam/create前時，會將create以為id，而進行錯誤的SQL應改為以下，限制id為數字
 //Route::get('/exam/{id}', 'ExamController@show')->name('exam.show')->where('id', '[0-9]+');
 //更好的做法是在最上面加pattern
-Route::post('/topic', 'TopicController@store')->name('topic.store');
 Route::get('/exam/{exam}/edit', 'ExamController@edit')->name('exam.edit');
 Route::patch('/exam/{exam}', 'ExamController@update')->name('exam.update');
+
+Route::post('/topic', 'TopicController@store')->name('topic.store');
+Route::get('/topic/{topic}/edit', 'TopicController@edit')->name('topic.edit');
