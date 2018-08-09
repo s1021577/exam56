@@ -4,7 +4,13 @@
     <h1>
         {{ $exam->title }}
         @can('建立測驗')
+            <form action="{{route('exam.destroy', $exam->id)}}"  method="post" style="display:inline">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger">刪除</button>
+            </form>
             <a href="{{ route('exam.edit', $exam->id) }}" class="btn btn-warning">編輯</a>
+
         @endcan
     </h1>
 
@@ -64,6 +70,11 @@
             <dt class="h3">
                 
                 @can('建立測驗')
+                    <form action="{{route('topic.destroy', $topic->id)}}"  method="post" style="display:inline">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">刪除</button>
+                    </form>
                     <a href="{{ route('topic.edit', $topic->id) }}" class="btn btn-xs btn-warning">編輯</a>
                     （{{ $topic->ans }}）
                 @endcan
