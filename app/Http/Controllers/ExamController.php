@@ -84,6 +84,16 @@ class ExamController extends Controller
         //return view('exam.show', compact('exam'));//只有呈現考試，沒有呈現題目
         //$topics = Topic::where('exam_id', $exam->id)->get();//12-8 測驗與題目的關聯
         //return view('exam.show', compact('exam', 'topics'));//12-8 測驗與題目的關聯
+        // $user= Auth::user();
+        // if($user and $user->can('進行測驗')){
+
+        // }
+        if (Auth::check() and Auth::user()->can('進行測驗')) {
+            if ($exam->topics->count() >= 5) {
+                $exam->topics = $exam->topics->random(5);
+            }
+            // 隨機挑5題
+        }
         return view('exam.show', compact('exam')); //已在12-8建好關連後，從此$exam已包括題庫Topic及測驗Exam
     }
 

@@ -24,7 +24,19 @@
 
     {{-- 題目列表 --}}
     @if(Auth::check())
-    @include('exam.topic')
+    {{-- 也可Auth::check('建立測驗') || Auth::check('進行測驗') --}}
+        @can('進行測驗'')
+            {{ bs()->openForm('post', '/test') }}        
+            @include('exam.topic')        
+            {{ bs()->hidden('user_id', Auth::id()) }}
+            {{ bs()->hidden('exam_id', $exam->id) }}
+            <div class="text-center my-5">
+                {{ bs()->submit('交卷')->sizeLarge() }}
+            </div>
+        {{ bs()->closeForm() }}
+        @else
+            @include('exam.topic')
+        @endcan
     @else
         <div class="alert alert-info">
             <h3>本測驗共有{{$exam->topics->count()}}題, 登入後始能看見</h3>        
