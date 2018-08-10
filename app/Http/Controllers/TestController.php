@@ -39,12 +39,14 @@ class TestController extends Controller
         //
         $content = collect($request->ans)->toJson();
         // $content=json_encode($request->ans, 256);
-        $score    = 100;
-        $uniscore = ((collect($request->ans)->count() > 0) ? round(100 / collect($request->ans)->count(), 2) : 0);
+        $right_ans = 0;
+        $show_num  = collect($request->ans)->count();
         foreach ($request->ans as $topic_id => $ans) {
             $topic = Topic::find($topic_id);
-            $score -= ($topic->ans != $ans) ? $uniscore : 0;
+            $right_ans += ($topic->ans == $ans) ? 1 : 0;
         }
+
+        $score = round(100 * ($right_ans / $show_num), 0);
 
         $test = Test::create([
             'content' => $content,

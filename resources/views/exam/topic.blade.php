@@ -20,6 +20,8 @@
             {{ $topic->topic }}
         </dt>
         <dd class="opt">
+            {{-- 預設沒填時以hidden為預設，注意先後順序, 如果radio有填則蓋掉，因為同名$topic->id --}}
+            {{ bs()->hidden("ans[$topic->id]",0)}}
             {{ bs()->radioGroup("ans[$topic->id]", [
                 1 => "&#10102; $topic->opt1", 
                 2 => "&#10103; $topic->opt2",  
