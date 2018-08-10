@@ -89,8 +89,9 @@ class ExamController extends Controller
 
         // }
         if (Auth::check() and Auth::user()->can('進行測驗')) {
+            $show_num = 5;
             if ($exam->topics->count() >= 5) {
-                $exam->topics = $exam->topics->random(5);
+                $exam->topics = $exam->topics->random($show_num);
             }
             // 隨機挑5題
         }
