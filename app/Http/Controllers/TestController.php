@@ -64,9 +64,18 @@ class TestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Test $test)
     {
         //
+        $topics  = json_decode($test->content, true);
+        $content = [];
+        $i       = 1;
+        foreach ($topics as $topic_id => $ans) {
+            $content[$i]['topic'] = Topic::find($topic_id);
+            $content[$i]['ans']   = $ans;
+        }
+        //透過$topic_id的索引，使用Topic::find方法，去將該題目所有的相關內容找出來，放在content[$i]['topic']
+        return view('exam.test', compact('test'));
     }
 
     /**
